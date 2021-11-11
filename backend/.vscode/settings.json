@@ -1,0 +1,7 @@
+{
+	"workbench.colorCustomizations": {
+		"titleBar.activeBackground": "#275ed8",
+		"titleBar.inactiveBackground": "#275ed8"
+	},
+	"cSpell.words": ["halbert", "Mult", "seedrandom"]
+}

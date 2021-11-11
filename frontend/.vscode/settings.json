@@ -1,0 +1,7 @@
+{
+	"workbench.colorCustomizations": {
+		"titleBar.activeBackground": "#D8A127",
+		"titleBar.inactiveBackground": "#D8A127"
+	},
+	"cSpell.words": ["halbert", "leaderboards", "seedrandom", "signin", "signout"]
+}

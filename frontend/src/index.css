@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	font-size: 14px;
+	@apply bg-gray-700 text-white tracking-wider;
+}
+h1 {
+	@apply text-3xl;
+}
+h2 {
+	@apply text-2xl;
+}
+h3 {
+	@apply text-lg;
+}
+a {
+	@apply text-yellow-300 no-underline;
+}
+
+a:hover {
+	@apply text-indigo-300;
+}
+
+.custom-rounded-lg {
+	@apply rounded-3xl p-8;
+}
+.custom-rounded-sm {
+	@apply rounded-xl p-4;
+}
+.transition-xl {
+	@apply duration-200 ease-in-out transition-all;
+}
+
+.scale-animated {
+	@apply transition-xl transform hover:scale-110;
+}
+
+.btn {
+	@apply font-bold text-white uppercase py-2 px-4 rounded-xl border-2 scale-animated;
+}
+.btn-primary {
+	@apply border-indigo-200 bg-indigo-500 hover:bg-indigo-400;
+}
+
+.btn-primary-light {
+	@apply border-indigo-200 bg-indigo-200 hover:bg-indigo-100;
+}
+
+.btn-danger {
+	@apply border-red-200 bg-red-500 hover:bg-red-400;
+}
+
+.btn:disabled {
+	@apply text-gray-200 border-gray-200 bg-gray-500 cursor-default transform hover:scale-100;
+}
+
+input:disabled {
+	@apply text-gray-100 border-gray-200 bg-gray-400 cursor-default transform hover:scale-100;
+}
+
+.content-height {
+	height: calc(100vh - theme('spacing.48'));
+}
+
+.world-log-height {
+	height: calc(100vh - 200px - 135px - theme('spacing.64'));
+}
+
+.inline-icon {
+	height: 1.8em;
+	width: 1.8em;
+	@apply inline;
+}
+
+.pixelated {
+	image-rendering: pixelated;
+}
+
+.text-xxs {
+	font-size: 0.66rem;
+	line-height: 0.9rem;
+}
+
+.scale-40 {
+	--tw-scale-x: 0.4;
+	--tw-scale-y: 0.4;
+}
+
+.duration-2000 {
+	transition-duration: 2s;
+}
+
+img {
+	pointer-events: none !important;
+}
+
+table,
+th,
+td {
+	@apply p-2 border-2 border-gray-900 text-center;
+}
+
+th {
+	@apply uppercase;
+}
+
+select {
+	@apply bg-gray-500 p-2 rounded-xl text-xs;
+}
+
+pre {
+	white-space: pre-wrap; /* Since CSS 2.1 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	white-space: -pre-wrap; /* Opera 4-6 */
+	white-space: -o-pre-wrap; /* Opera 7 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.console {
+	font-family: 'Noto Mono', 'ui-monospace', 'SFMono-Regular';
+}
