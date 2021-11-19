@@ -120,6 +120,7 @@ export class RpgModule extends BaseModule {
 		const storeData = await getStoreData(stateStore);
 		const numOfMonsters = helpers.getNumOfMonsters(storeData.monsters);
 
+		let forceLevelSpawn: number | null = null;
 		let intensity = '';
 
 		// Randomly spawn monsters after N number of blocks
@@ -134,6 +135,7 @@ export class RpgModule extends BaseModule {
 		if (!intensity && block.header.height % 16 === 0 && numOfMonsters.normal < 200) {
 			intensity = 'normal';
 		}
+
 		if (!intensity && block.header.height % 10 === 0 && numOfMonsters.easy < 250) {
 			intensity = 'easy';
 		}
@@ -142,7 +144,20 @@ export class RpgModule extends BaseModule {
 			intensity = 'easy';
 		}
 
-		if (!intensity) {
+		// Emergency spawn if specific level is void of monsters
+		if (
+			!intensity && // Ignore if a regular wave is already being spawned
+			block.header.height > 50 && // Don't do anything until at least one wave of each intensity has spawned
+			block.header.height % 10 === 0 // Check only once every 10 blocks
+		) {
+			forceLevelSpawn = helpers.checkForLevelVoidOfMonsters(storeData.monsters);
+
+			if (forceLevelSpawn) {
+				this._logger.debug(`No monsters of level ${forceLevelSpawn} present. Spawning new wave immediately.`);
+			}
+		}
+
+		if (!intensity && !forceLevelSpawn) {
 			return;
 		}
 
@@ -151,6 +166,10 @@ export class RpgModule extends BaseModule {
 		const monsters: Monster[] = [];
 
 		const getLevel = (i: number) => {
+			if (!intensity && forceLevelSpawn) {
+				return forceLevelSpawn;
+			}
+
 			if (intensity === 'extreme') {
 				return i + 17;
 			}
@@ -176,7 +195,10 @@ export class RpgModule extends BaseModule {
 		storeData.statistics.monstersAlive += seeds.length;
 
 		await stateStore.chain.set(CHAIN_STATE, codec.encode(ChainStateSchema, storeData));
-		this._channel.publish('rpg:waveSpawned', { intensity, eventId: blockId });
+		this._channel.publish('rpg:waveSpawned', {
+			intensity: forceLevelSpawn ? `Level ${forceLevelSpawn}` : intensity,
+			eventId: blockId,
+		});
 	}
 
 	public async afterTransactionApply({ transaction, stateStore }: TransactionApplyContext) {
