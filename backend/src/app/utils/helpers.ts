@@ -50,6 +50,28 @@ export const getNumOfMonsters = (monsters: Monster[]) => {
 	return { easy, normal, hard, extreme };
 };
 
+export const checkForLevelVoidOfMonsters = (monsters: Monster[]) => {
+	let forceLevelSpawn: number | null = null;
+	const levelMap: { [key: number]: number } = {};
+
+	monsters.forEach(m => {
+		if (levelMap[m.lvl] === undefined) {
+			levelMap[m.lvl] = 1;
+		} else {
+			levelMap[m.lvl] += 1;
+		}
+	});
+
+	for (let i = 1; i < 24; i += 1) {
+		if (levelMap[i] === undefined) {
+			forceLevelSpawn = i;
+			break;
+		}
+	}
+
+	return forceLevelSpawn;
+};
+
 export const getGearAttack = (player: Player) => {
 	const item = weapons.find(w => w.id === player.gear.weapon);
 

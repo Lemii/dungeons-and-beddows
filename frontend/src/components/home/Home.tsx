@@ -19,7 +19,7 @@ const Home = (): ReactElement => {
 			<div className="text-center m-auto">
 				<Logo />
 				<div className="text-xxs mt-4 mb-24">
-					<span className="opacity-50">v0.4.0 ({process.env.REACT_APP_GIT_SHA}) - created by lemii</span> <br />
+					<span className="opacity-50">v0.4.1 ({process.env.REACT_APP_GIT_SHA}) - created by lemii</span> <br />
 				</div>
 
 				<div className="flex justify-center gap-32">

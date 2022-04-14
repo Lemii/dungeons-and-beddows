@@ -10,8 +10,8 @@ import Table from './Table';
 
 const sortingOptions: { label: string; value: string; order: SortingOrder }[] = [
 	{
-		label: 'Level',
-		value: 'lvl',
+		label: 'Level / XP',
+		value: 'xp',
 		order: 'desc',
 	},
 	{
