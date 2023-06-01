@@ -8,8 +8,6 @@ Dungeons & Beddows is a turn-based RPG game built on Lisk technology. It was dev
 
 In this game you go on an adventure to slay monsters, level up, earn gold, get better gear, run into random events, and much more.
 
-Check out the game at [DungeonsAndBeddows.com](https://dungeonsandbeddows.com) 🕹️
-
 # Compatibility
 
 For the time being the game is optimized for desktop browsers only.
